@@ -1,5 +1,5 @@
 (* Copyright (c) 2008-2013, 2015, Adam Chlipala
- * 
+ *
  * This work is licensed under a
  * Creative Commons Attribution-Noncommercial-No Derivative Works 3.0
  * Unported License.
@@ -59,20 +59,38 @@ Isabelle/HOL, implemented with the "proof assistant development framework" Isabe
 (** * Why Coq? *)
 
 (**
+(**
 This book is going to be about certified programming using Coq, and I am convinced that it is the best tool for the job.  Coq has a number of very attractive properties, which I will summarize here, mentioning which of the other candidate tools lack which properties.
+*)
+この本はCoqを使ったcertified programmingについての本になる予定です．
+私はそれ（Coq）がこの仕事（certified programming）に最良のツールだと確信しています．
+Coqにはとても魅力的な性質が多く備わっていますので，ここ（以下）でまとめます．
+同時に他の候補となるツールがどの性質を書いているかに言及します．
 *)
 
 
+(**
 (** ** Based on a Higher-Order Functional Programming Language *)
+*)
+(** ** 高階の関数型プログラミング言語に基づいている *)
 
+(**
 (**
 %\index{higher-order vs. first-order languages}%There is no reason to give up the familiar comforts of functional programming when you start writing certified programs.  All of the tools I listed are based on functional programming languages, which means you can use them without their proof-related features to write and run regular programs.
 
 %\index{ACL2}%ACL2 is notable in this field for having only a _first-order_ language at its foundation.  That is, you cannot work with functions over functions and all those other treats of functional programming.  By giving up this facility, ACL2 can make broader assumptions about how well its proof automation will work, but we can generally recover the same advantages in other proof assistants when we happen to be programming in first-order fragments.
 *)
+certified programを書くとき，関数型プログラミング言語のよく知られた便利さをあきらめる理由はありません．ここで挙げるツールは関数型プログラミング言語を基礎としている（？）ため，証明に関係する機能を使わなくても普通のプログラムを書いたり実行したりできます．
+1階の言語のみを持つ点でACL2（とCoqの差異）は重要です．
+つまり，(1階の言語のツールでは)関数上の関数などの関数型プログラミングの便利な機能が使えないのです．
+この機能を諦めることで，自動証明がいかにうまく動くかについてより多様な仮定がACL2ではできるのですが，他の証明支援系でも1階のプログラムを書くときは同様の利点を回復できます．
+*)
 
 
+(**
 (** ** Dependent Types *)
+*)
+(** ** 依存型 *)
 
 (**
 A language with _dependent types_ may include references to programs inside of types.  For instance, the type of an array might include a program expression giving the size of the array, making it possible to verify absence of out-of-bounds accesses statically.  Dependent types can go even further than this, effectively capturing any correctness property in a type.  For instance, later in this book, we will see how to give a compiler a type that guarantees that it maps well-typed source programs to well-typed target programs.

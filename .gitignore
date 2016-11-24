@@ -1,0 +1,5 @@
+src/*.vo
+src/*.v.d
+src/*.glob
+src/.*.aux
+latex/*
