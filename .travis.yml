@@ -20,6 +20,7 @@ deploy:
     secure: RSUHOVN0knE0BEmrW3wOBUjcgxGGfQTuloc9zHb+06xVjq5LSqwONTVOinR27OxFSY8CUyxzdt5vdYZRxFuUvJAIQvLdKUIWTbt1+q9f/lyymdSS+Gv0bx15kUq/09rWCTOJrj9agoA5KgADhjoZRv+Vv7OEQkAs43cbubQepolHJa7ZY3T3bFao7wzBIknnNeje+Z1DM0C3yZ/FNFXlOjSdOjfG3gwWbGyUiolYxeZi9OZi/elSxXHmEAJsDnS0pi9DtT4OSNVuU/Rb+pLlS4F3CRhD6jbiJlew4CNr3eCFV7dU8wbGkivVrI+UJOkTI6CnWqTj6pIj/yXJiyAkm9QmsMyRTSchWOpa2yC/r1cTw179FsRzhafcW/NmqeTNbITCuqEtlUkzqGjmnBCbdAJeO9Gy/tU/QU1A4wCfQ+ri7Olw13ypkAEQVFR9kCtG6falrQ9vDt0YN3v777bG3LrfNEaBBd4TudHPazIzrWCwDrL0SjlcoI4LCqLHilR4qyszy+8+SE1ua4FRmtHbsS/B4+36LBDATRsVa4iBHdo9GQOvt5NF1e+w0S+FM2bLeID+fNxZXbR8irFj+OQDjsBY6XI5NsyOJAHh3u8kPJxClC3lAY+C/OPU4YMZhkX8jz7UqXAMYasJ4ZtR3ICTr16x/Ig+n/DJCbeKwrWuvr8=
   bucket: travis-artifact
   local-dir: html
+  skip_cleanup: true
   on:
     repo: fluiddynamics/cpdt-japanese
     branch: travis-ci
