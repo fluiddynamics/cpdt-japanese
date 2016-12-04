@@ -21,6 +21,6 @@ deploy:
   bucket: travis-artifact
   acl: ''
   on:
-    repo: fluiddynamics/urban-octo-spork
+    repo: fluiddynamics/cpdt-japanese
   skip_cleanup: true
   local_dir: html
