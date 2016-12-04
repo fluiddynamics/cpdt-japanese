@@ -22,5 +22,6 @@ deploy:
   acl: ''
   on:
     repo: fluiddynamics/cpdt-japanese
+    all_branches: true
   skip_cleanup: true
   local_dir: html
