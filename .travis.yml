@@ -9,7 +9,7 @@ before_script:
 - make
 - make install
 script:
-- cd
+- cd ..
 - export PATH=$PATH:~/coq-inst/bin
 - make
 - make html
