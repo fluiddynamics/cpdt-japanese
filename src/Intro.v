@@ -184,6 +184,7 @@ certified programを書くとき，関数型プログラミング言語のよく
 (** ** 依存型 *)
 
 (**
+(**
 A language with _dependent types_ may include references to programs inside of types.  For instance, the type of an array might include a program expression giving the size of the array, making it possible to verify absence of out-of-bounds accesses statically.  Dependent types can go even further than this, effectively capturing any correctness property in a type.  For instance, later in this book, we will see how to give a compiler a type that guarantees that it maps well-typed source programs to well-typed target programs.
 
 %\index{ACL2}%ACL2 and %\index{HOL}%HOL lack dependent types outright.  Each of %\index{PVS}%PVS and %\index{Twelf}%Twelf supports a different strict subset of Coq's dependent type language.  Twelf's type language is restricted to a bare-bones, monomorphic lambda calculus, which places serious restrictions on how complicated _computations inside types_ can be.  This restriction is important for the soundness argument behind Twelf's approach to representing and checking proofs.
@@ -193,13 +194,55 @@ In contrast, %\index{PVS}%PVS's dependent types are much more general, but they 
 Dependent types are useful not only because they help you express correctness properties in types.  Dependent types also often let you write certified programs _without writing anything that looks like a proof_.  Even with subset types, which for many contexts can be used to express any relevant property with enough acrobatics, the human driving the proof assistant usually has to build some proofs explicitly.  Writing formal proofs is hard, so we want to avoid it as far as possible.  Dependent types are invaluable for this purpose.
 
 *)
+_依存型_を持つ言語は型の内部への言及を含むことができます．
+例えば，配列をあらわす型にその配列のサイズを与えるプログラムを含むことができるので，配列の範囲外アクセスがないことを静的に確かめることができるようになります．
+型の正しさを表す性質を効果的に捉えることで，依存型はさらに先まで行けます．
+例えば，この本で後ほど，正しく型付けされたソースプログラムから正しく型付けされたターゲットプログラムに変換することを保証する型をコンパイラに与える方法を見ます．
 
+公然のことですが，%\index{ACL2}%ACL2と%\index{HOL}%HOLでは依存型は使えません．
+%\index{PVS}%PVSと%\index{Twelf}%TwelfはCoqの依存型言語のそれぞれ別の真部分集合をサポートします．
+Twelfの型言語はbare-bonesに制限されています．つまり単形のラムダ計算です．
+そのため型の内部での計算に重大な制約が置かれます．
+この制約はTwelfが証明を表現したり証明したりするアプローチの健全性を議論するときに重要です．
+
+それに対して%\index{PVS}%PVSの依存型はより一般的ですが，subset typeという単一の仕組みに制限されています．
+つまり，通常の型は述語を付加することで定義されます．
+subset typeの要素の1つ1つはbase typeの要素のうちその述語を満たすものです．
+この本の6章ではこの様式のプログラミングをCoqでする方法を紹介します．
+一方Part IIの他の章ではCoqによる依存型を扱い，PVSがサポートする範囲外です．
+
+依存型が有用なのは，型の正しさを表現するのを助けるからだけではありません（？）．
+依存型のおかげで，しばしば証明らしいものを書かずにcertified programを書くことができるようになるんです．
+subset typeだけだと，離れ業を十分駆使すれば妥当な性質を表現できるのですが，人間が操作するような証明支援機は通常，証明を明示的に構築する必要があります．
+形式的な証明を書くのは大変なので，なるべく避けたいものです．
+この目的のために，依存型には計り知れない価値があります．
+*)
+
+(**
 (** ** An Easy-to-Check Kernel Proof Language *)
+*)
+(** ** 確認しやすいカーネル証明言語 *)
 
+(**
 (**
 %\index{de Bruijn criterion}%Scores of automated decision procedures are useful in practical theorem proving, but it is unfortunate to have to trust in the correct implementation of each procedure.  Proof assistants satisfy the "de Bruijn criterion" when they produce _proof terms_ in small kernel languages, even when they use complicated and extensible procedures to seek out proofs in the first place.  These core languages have feature complexity on par with what you find in proposals for formal foundations for mathematics (e.g., ZF set theory).  To believe a proof, we can ignore the possibility of bugs during _search_ and just rely on a (relatively small) proof-checking kernel that we apply to the _result_ of the search.
 
 Coq meets the de Bruijn criterion, while %\index{ACL2}%ACL2 does not, as it employs fancy decision procedures that produce no "evidence trails" justifying their results.  %\index{PVS}%PVS supports _strategies_ that implement fancier proof procedures in terms of a set of primitive proof steps, where the primitive steps are less primitive than in Coq.  For instance, a propositional tautology solver is included as a primitive, so it is a question of taste whether such a system meets the de Bruijn criterion.  The HOL implementations meet the de Bruijn criterion more manifestly; for Twelf, the situation is murkier.
+*)
+
+%\index{de Bruijn criterion}%自動化された決定手続きが判定してくれるというのは実践的な定理証明では有用です．
+しかし，一つずつの手続きが正しく実装されているということを信頼しないと行けないのは残念です．
+複雑で拡張可能な手順を使って証明を探し出すのが先かどうかに関わらず，証明支援機が核となる小さな言語で表現された_証明項_を生成するとき，
+その証明支援機はde Bruijn criterionを満たすと言います．
+数学の形式的な基礎の提案の中で見られるのと同様の複雑さをこのようなコア言語も持っています．
+証明を_探す_際のバグの可能性は無視してもよく，証明を検証するのに必要な小さな部分だけだけによって，証明を信じることができます．
+
+Coqはde Bruijn criterionを満たします．一方%\index{ACL2}%ACL2は満たしません．
+というのは，ACL2は手の込んだ決定手続きを採用し，ACL2の結果を正当化する証跡を生成しないからです．
+%\index{PVS}%PVSは_戦略_をサポートします．戦略では手の込んだ証明手順を「原始的な」証明の段階で実装します．
+ここで「原始的な」といってもCoqほど原始的ではないです．
+例えば，命題論理の恒真式ソルバはPVSでは原始的とされるため，そういうものがde Bruijn criterionを満たすかどうかという好みの問題になります．
+HOLの実装がde Bruijn criterionに適合するのはより明らかです．Twelfに対してはより不明瞭です．
 *)
 
 (** ** Convenient Programmable Proof Automation *)
