@@ -31,9 +31,20 @@ Reset unit.
 (* end thide *)
 (* end hide *)
 
+(**
 (** %\chapter{Inductive Predicates}% *)
+*)
+(** %\chapter{帰納的な述語}% *)
 
+(**
 (** The so-called %\index{Curry-Howard correspondence}``%#"#Curry-Howard correspondence#"#%''~\cite{Curry,Howard}% states a formal connection between functional programs and mathematical proofs.  In the last chapter, we snuck in a first introduction to this subject in Coq.  Witness the close similarity between the types [unit] and [True] from the standard library: *)
+*)
+
+(**
+いわゆる「Curry-Howard同型対応」は関数型のプログラムと数学の証明の間の形式的な対応をさします．
+前の章では，このテーマの最初のイントロダクションを見ていました．
+標準ライブラリにあるunitとTrueは非常に類似しているということを目撃して見ましょう．
+*)
 
 Print unit.
 (** %\vspace{-.15in}%[[
@@ -42,6 +53,7 @@ Print unit.
 *)
 
 Print True.
+(**
 (** %\vspace{-.15in}%[[
   Inductive True : Prop :=  I : True
   ]]
@@ -53,6 +65,22 @@ The type [unit] has one value, [tt].  The type [True] has one proof, [I].  Why d
 The essence of the argument is roughly this: to an engineer, not all functions of type [A -> B] are created equal, but all proofs of a proposition [P -> Q] are.  This idea is known as%\index{proof irrelevance}% _proof irrelevance_, and its formalizations in logics prevent us from distinguishing between alternate proofs of the same proposition.  Proof irrelevance is compatible with, but not derivable in, Gallina.  Apart from this theoretical concern, I will argue that it is most effective to do engineering with Coq by employing different techniques for programs versus proofs.  Most of this book is organized around that distinction, describing how to program, by applying standard functional programming techniques in the presence of dependent types; and how to prove, by writing custom Ltac decision procedures.
 
 With that perspective in mind, this chapter is sort of a mirror image of the last chapter, introducing how to define predicates with inductive definitions.  We will point out similarities in places, but much of the effective Coq user's bag of tricks is disjoint for predicates versus "datatypes."  This chapter is also a covert introduction to dependent types, which are the foundation on which interesting inductive predicates are built, though we will rely on tactics to build dependently typed proof terms for us for now.  A future chapter introduces more manual application of dependent types. *)
+*)
+
+(** %\vspace{-.15in}%[[
+  Inductive True : Prop :=  I : True
+  ]]
+
+[unit]はただ1つの値をとる型で，[True]は常に成り立つ命題であったことを思い出してください．
+この2つの概念には表面的な違いがあるのですが，両方とも同じ帰納的な定義の方法を使っています．
+これらの関係はもっと先まで行きます．
+[unit]を[True]に，[tt]を[I]に，[Set]を　[Prop]に置き換えると[True]の定義になるということがわかります．
+最初の2つの違いは名前の変更なので重要ではありませんが，3つ目の違いは重要なもので，プログラムと証明をわけるものです．
+[Set]型の[T]という項はプログラムの型で，[T]型の項がプログラムです．
+12章ではもっと詳細に[Prop]と[Set]の理論的な違いを扱います．
+今の所は，証明が何かということについて，一般的な直感に従います．
+
+*)
 
 
 (** * Propositional Logic *)
