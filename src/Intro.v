@@ -153,10 +153,10 @@ Isabelle%~\cite{Isabelle}%を用いて実装されており,
 (**
 This book is going to be about certified programming using Coq, and I am convinced that it is the best tool for the job.  Coq has a number of very attractive properties, which I will summarize here, mentioning which of the other candidate tools lack which properties.
 *)
-この本はCoqを使ったcertified programmingについての本になる予定です．
+この本はCoqを使った認証を伴うプログラミングについての本になる予定です．
 私はそれ（Coq）がこの仕事（certified programming）に最良のツールだと確信しています．
 Coqにはとても魅力的な性質が多く備わっていますので，ここ（以下）でまとめます．
-同時に他の候補となるツールがどの性質を書いているかに言及します．
+同時に他の候補となるツールがどの性質を欠いているかも説明します．
 *)
 
 
@@ -171,10 +171,10 @@ Coqにはとても魅力的な性質が多く備わっていますので，こ�
 
 %\index{ACL2}%ACL2 is notable in this field for having only a _first-order_ language at its foundation.  That is, you cannot work with functions over functions and all those other treats of functional programming.  By giving up this facility, ACL2 can make broader assumptions about how well its proof automation will work, but we can generally recover the same advantages in other proof assistants when we happen to be programming in first-order fragments.
 *)
-certified programを書くとき，関数型プログラミング言語のよく知られた便利さをあきらめる理由はありません．ここで挙げるツールは関数型プログラミング言語を基礎としている（？）ため，証明に関係する機能を使わなくても普通のプログラムを書いたり実行したりできます．
-1階の言語のみを持つ点でACL2（とCoqの差異）は重要です．
+認証を伴うプログラムを書くとき，関数型プログラミング言語のよく知られた便利さをあきらめる理由はありません．ここで挙げるツールは関数型プログラミング言語を基礎としているため，証明に関係する機能を使わなくても普通のプログラムを書いたり実行したりできます．
+＿1階の＿言語のみを基礎とするという点点でACL2は重要です．
 つまり，(1階の言語のツールでは)関数上の関数などの関数型プログラミングの便利な機能が使えないのです．
-この機能を諦めることで，自動証明がいかにうまく動くかについてより多様な仮定がACL2ではできるのですが，他の証明支援系でも1階のプログラムを書くときは同様の利点を回復できます．
+この便利さの代わりに，自動証明がいかにうまく動くかについてより多様な仮定がACL2ではできるのですが，他の証明支援系でも1階のプログラムを書くときは同様の利点を回復できます．
 *)
 
 
@@ -194,8 +194,8 @@ In contrast, %\index{PVS}%PVS's dependent types are much more general, but they 
 Dependent types are useful not only because they help you express correctness properties in types.  Dependent types also often let you write certified programs _without writing anything that looks like a proof_.  Even with subset types, which for many contexts can be used to express any relevant property with enough acrobatics, the human driving the proof assistant usually has to build some proofs explicitly.  Writing formal proofs is hard, so we want to avoid it as far as possible.  Dependent types are invaluable for this purpose.
 
 *)
-_依存型_を持つ言語は型の内部への言及を含むことができます．
-例えば，配列をあらわす型にその配列のサイズを与えるプログラムを含むことができるので，配列の範囲外アクセスがないことを静的に確かめることができるようになります．
+＿依存型＿を持つ言語は型の内部への言及を含むことができます．
+例えば，配列をあらわす型にはその配列のサイズを与えるプログラム式を含むことができるので，配列の範囲外アクセスがないことを静的に確かめることができるようになります．
 型の正しさを表す性質を効果的に捉えることで，依存型はさらに先まで行けます．
 例えば，この本で後ほど，正しく型付けされたソースプログラムから正しく型付けされたターゲットプログラムに変換することを保証する型をコンパイラに与える方法を見ます．
 
@@ -211,7 +211,7 @@ subset typeの要素の1つ1つはbase typeの要素のうちその述語を満�
 この本の6章ではこの様式のプログラミングをCoqでする方法を紹介します．
 一方Part IIの他の章ではCoqによる依存型を扱い，PVSがサポートする範囲外です．
 
-依存型が有用なのは，型の正しさを表現するのを助けるからだけではありません（？）．
+依存型が有用なのは，型の正しさを表現するのを助けるからだけではありません．
 依存型のおかげで，しばしば証明らしいものを書かずにcertified programを書くことができるようになるんです．
 subset typeだけだと，離れ業を十分駆使すれば妥当な性質を表現できるのですが，人間が操作するような証明支援機は通常，証明を明示的に構築する必要があります．
 形式的な証明を書くのは大変なので，なるべく避けたいものです．
