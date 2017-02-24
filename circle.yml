@@ -5,4 +5,5 @@ machine:
     - docker
 compile:
   override:
-    - echo hello, world!
+    - docker run fluiddynamics/coq
+    - make
