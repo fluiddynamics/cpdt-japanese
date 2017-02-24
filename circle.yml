@@ -1,0 +1,8 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  services:
+    - docker
+compile:
+  override:
+    - echo hello, world!
