@@ -13,6 +13,5 @@ compile:
     - docker run -v ~/cpdt-japanese:/cpdt-japanese -w /cpdt-japanese fluiddynamics/coq /bin/bash -c "make && make doc"
 test:
   override:
-    - cd cpdt-japanese
     - cp latex/cpdt.pdf $CIRCLE_ARTIFACTS
     - cp -r html $CIRCLE_ARTIFACTS
