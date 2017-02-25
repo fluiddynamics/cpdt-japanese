@@ -10,7 +10,7 @@ dependencies:
     
 compile:
   override:
-    - docker run -v ~/cpdt-japanese:/cpdt-japanese -w /cpdt-japanese fluiddynamics/coq "make && make doc"
+    - docker run -v ~/cpdt-japanese:/cpdt-japanese -w /cpdt-japanese fluiddynamics/coq /bin/bash -c "make && make doc"
 test:
   override:
     - cd cpdt-japanese
