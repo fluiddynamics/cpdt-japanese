@@ -271,7 +271,7 @@ Coqでは，命題の結合記号のうち最も基本的なのは含意であ�
   The interested reader can check that [and] has a Curry-Howard equivalent called %\index{Gallina terms!prod}%[prod], the type of pairs.  However, it is generally most convenient to reason about conjunction using tactics.  An explicit proof of commutativity of [and] illustrates the usual suspects for such tasks.  The operator [/\] is an infix shorthand for [and]. *)
 興味を持った読者は [and] は [prod] （ペアの型）というカリーハワード同値を持つことを確かめられるでしょう．
 しかし，連言を証明するにはタクティクを使ってするのが最も便利です．
-An explicit proof of commutativity of [and] illustrates the usual suspects for such tasks.
+[and] の可換性を明示的に証明することでそれが確認できます．
 [/\]演算子は[and]の中置略記です．
 *)
 
@@ -446,7 +446,7 @@ subgoal 2 is
 (**
 命題論理の全ての証明を手動でこつこつ進めないといけないというのは残念なことです．
 幸運なことに，その必要はありません．
-Coqの自動化タクティクのもっとも基本的なものの1つは[tauto]で，構成的な命題論理の完全な決定手続きです（「構成的」の意味については次の節でより詳しく説明します）．
+最も基本的なCoqの自動化タクティクの1つである[tauto]は，構成的な命題論理の完全な決定手続きです（「構成的」の意味については次の節でより詳しく説明します）．
 ここまで証明してきた純粋な命題論理の定理は[tauto]を使うことで片付けることができます．
 *)
 
@@ -495,6 +495,7 @@ Coqの自動化タクティクのもっとも基本的なものの1つは[tauto]
    We can see that we need a theorem about lengths of concatenated lists, which we proved last chapter and is also in the standard library. *)
 連結されたリストの長さについての定理が必要だとわかります．その定理については前の章でも証明したし，標準ライブラリにも含まれています．
 *)
+
     rewrite app_length.
     (** [[
   ls1 : list nat
@@ -508,8 +509,9 @@ Coqの自動化タクティクのもっとも基本的なものの1つは[tauto]
 (**
    Now the subgoal follows by purely propositional reasoning.  That is, we could replace [length ls1 + length ls2 = 6] with [P] and [length ls1 = length ls2] with [Q] and arrive at a tautology of propositional logic. *)
 ここまで来たら，純粋な命題論理の推論でサブゴールは証明できます．
-すなわち，[length ls1 + length ls2 = 6]を[P]と考え，[length ls1 = length ls2]を[Q]と考えて命題論理のトートロジに持ち込めます．
+すなわち，[length ls1 + length ls2 = 6]を[P]と考え，[length ls1 = length ls2]を[Q]と考えて命題論理のトートロジに到達します．
 *)
+
     tauto.
 (* end thide *)
   Qed.
