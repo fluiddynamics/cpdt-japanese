@@ -1,5 +1,5 @@
-(* Copyright (c) 2008-2013, 2015, Adam Chlipala
- *
+(* Copyright (c) 2008-2013, 2015, 2017, Adam Chlipala
+ * 
  * This work is licensed under a
  * Creative Commons Attribution-Noncommercial-No Derivative Works 3.0
  * Unported License.
@@ -305,7 +305,10 @@ Coqはプログラムと証明項を同じ構文クラスで表現します（�
 
 *)
 
+(**
 (** * Why Not a Different Dependently Typed Language? *)
+*)
+(** * 他の依存型の言語じゃない理由 *)
 
 (**
 The logic and programming language behind Coq belongs to a type-theory ecosystem with a good number of other thriving members.  %\index{Agda}%{{http://appserv.cs.chalmers.se/users/ulfn/wiki/agda.php}Agda} and %\index{Epigram}%{{https://code.google.com/p/epigram/}Epigram} are the most developed tools among the alternatives to Coq, and there are others that are earlier in their lifecycles.  All of the languages in this family feel sort of like different historical offshoots of Latin.  The hardest conceptual epiphanies are, for the most part, portable among all the languages.  Given this, why choose Coq for certified programming?
@@ -316,7 +319,10 @@ On the other hand, Agda, Epigram, and similar tools have less implementation bag
 *)
 
 
+(**
 (** * Engineering with a Proof Assistant *)
+*)
+(** * 証明支援器を使ったエンジニアリング *)
 
 (**
 In comparisons with its competitors, Coq is often derided for promoting unreadable proofs.  It is very easy to write proof scripts that manipulate proof goals imperatively, with no structure to aid readers.  Such developments are nightmares to maintain, and they certainly do not manage to convey "why the theorem is true" to anyone but the original author.  One additional (and not insignificant) purpose of this book is to show why it is unfair and unproductive to dismiss Coq based on the existence of such developments.
@@ -327,12 +333,26 @@ If I do that job well, then this book should be of interest even to people who h
 *)
 
 
+(**
 (** * Prerequisites *)
+*)
+(** * 前提知識 *)
 
+(**
 (**
 I try to keep the required background knowledge to a minimum in this book.  I will assume familiarity with the material from usual discrete math and logic courses taken by undergraduate computer science majors, and I will assume that readers have significant experience programming in one of the ML dialects, in Haskell, or in some other, closely related language.  Experience with only dynamically typed functional languages might lead to befuddlement in some places, but a reader who has come to understand Scheme deeply will probably be fine.
 
 My background is in programming languages, formal semantics, and program verification.  I sometimes use examples from that domain.  As a reference on these topics, I recommend _Types and Programming Languages_ %\cite{TAPL}%, by Benjamin C. Pierce; however, I have tried to choose examples so that they may be understood without background in semantics.
+*)
+*)
+(**
+私はこの本を読む上で必要な背景知識を最小限に抑えようとしています。
+私は、情報科学専攻の学部生が習う通常の離散数学と論理学を理解していること、そしてMLの方言かHaskellかその他の関連言語についてのプログラミング経験があることを仮定します。
+動的型付きの関数型言語の経験だけでは理解出来なくて困る部分もあるかもしれません。Schemeについての深い理解があればおそらく大丈夫です。
+
+私のバックグラウンドはプログラミング言語、形式意味論、そしてプログラム検証です。
+それらの分野からの例を使うことがあります。
+参考文献として _Type and Programming Languages_ %\cite{TAPL}% (訳注:和訳は「型システム入門 オーム社」)をお勧めします。しかし、なるべく意味論の背景なしに理解できるように例を選んでいます。
 *)
 
 
@@ -414,7 +434,7 @@ Coqにあらかじめあるタクティクは十分高レベルな自動化を�
 
 (**
 (**
-At the start of the next chapter, I assume that you have installed Coq and Proof General.  The code in this book is tested with Coq versions 8.4pl5 and 8.5beta2.  Though parts may work with other versions, it is expected that the book source will fail to build with _earlier_ versions.
+At the start of the next chapter, I assume that you have installed Coq and Proof General.  The code in this book is tested with Coq versions 8.4pl6, 8.5pl3, and 8.6.  Though parts may work with other versions, it is expected that the book source will fail to build with _earlier_ versions.
 
 %\index{Proof General|(}%To set up your Proof General environment to process the source to the next chapter, a few simple steps are required.
 
@@ -451,7 +471,7 @@ With Proof General, the portion of a buffer that Coq has processed is highlighte
 %\index{Proof General|)}% *)
 *)
 (**
-次の章の最初では、皆さんがCoqとProof Generalをインストールした状態であることを仮定します。本書のコードはCoqバージョン8.4pl5と8.5beta2でテストされています。部分的には他のバージョンで動くかもしれませんが、本書のソースはより以前のバージョンではビルドに失敗すると予想されます。
+次の章の最初では、皆さんがCoqとProof Generalをインストールした状態であることを仮定します。本書のコードはCoqバージョン8.4pl6、8.5pl3、8.6でテストされています。部分的には他のバージョンで動くかもしれませんが、本書のソースはより以前のバージョンではビルドに失敗すると予想されます。
 
 %\index{Proof General|(}%次の章でソースを処理するためにProof Generalの設定をするには、以下のシンプルなステップが必要です。
 
