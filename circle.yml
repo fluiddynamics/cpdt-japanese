@@ -16,4 +16,5 @@ test:
     - cp latex/cpdt.pdf $CIRCLE_ARTIFACTS
     - cp -r html $CIRCLE_ARTIFACTS
     - zip -r all.zip latex/cpdt.pdf html
+    - sha1sum all.zip latex/cpdt.pdf html/*
     - cp all.zip $CIRCLE_ARTIFACTS
