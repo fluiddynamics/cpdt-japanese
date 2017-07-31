@@ -6,7 +6,7 @@
  * The license text is available at:
  *   http://creativecommons.org/licenses/by-nc-nd/3.0/
  *)
-(*
+
 (* begin hide *)
 Require Import List.
 
@@ -1871,4 +1871,4 @@ Theorem getNat_is_reasonable : getNat' myTypes myNatIndex myValues = 3.
 Qed.
 
 (** The same parameters as before work without alteration, and we avoid use of axioms. *)
-*)
+
